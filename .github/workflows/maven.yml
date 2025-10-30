@@ -83,17 +83,5 @@ jobs:
     #    JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/16.0.1-9/x64
     #  run: |
     #    sudo mvn install
-    - name: Debug - list files
-      run: |
-        echo "=== Root directory ==="
-        ls -la
-        echo "=== Looking for pom.xml files ==="
-        find . -name "pom.xml" -o -name "ci-pom.xml" | head -20
-    - name: Install parent POM and build
-      run: |
-        if [ -f "pom.xml" ]; then
-          echo "Installing parent POM..."
-          mvn install -N -DskipTests
-        fi
-        echo "Building with ci-pom.xml..."
-        mvn -f ci-pom.xml clean package -U
+    - name: Build with Maven
+      run: mvn clean package -DskipTests
