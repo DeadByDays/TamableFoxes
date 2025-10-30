@@ -83,8 +83,7 @@ jobs:
     #    JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/16.0.1-9/x64
     #  run: |
     #    sudo mvn install
+    - name: Install parent POM
+      run: mvn install -N
     - name: Build with Maven
-      env:
-        JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/16.0.1-9/x64
-      run: |
-        sudo mvn -f ./ci-pom.xml package
+      run: mvn clean package
